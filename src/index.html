@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Gerador de QR Code PIX</title>
+        <link rel="stylesheet" href="./style.css" />
+    </head>
+    <body>
+        <div class="container">
+
+            <h1>Gerador de QR Code PIX</h1>
+
+            <label>Chave PIX:</label>
+            <input type="text" id="chave" maxlength="77"
+                placeholder="Chave PIX" />
+            <div id="erroChave" class="erro"></div>
+
+            <label>Nome do beneficiário (até 25 letras):</label>
+            <input type="text" id="nome" maxlength="25" placeholder="Nome"
+                oninput="ajustarTexto(this)" />
+            <div id="erroNome" class="erro"></div>
+
+            <label>Cidade (até 15 letras):</label>
+            <input type="text" id="cidade" maxlength="15" placeholder="Cidade"
+                oninput="ajustarTexto(this)" />
+            <div id="erroCidade" class="erro"></div>
+
+            <label>Valor (opcional):</label>
+            <input type="number" id="valor" step="0.01" max="9999999"
+                placeholder="Ex: 15.75" />
+            <div id="erroValor" class="erro"></div>
+
+            <label>Código da transação (opcional):</label>
+            <input type="text" id="txid" maxlength="25"
+                placeholder="Ex: Pedido123"
+                oninput="this.value = this.value.replace(/[^a-zA-Z0-9_]/g, '')" />
+            <div id="erroTxid" class="erro"></div>
+            <button onclick="gerarPix()">Gerar QRCode</button>
+
+            <div id="codigoPix"></div>
+            <button id="btnCopiarPix" onclick="copiarPix()"
+                style="display:none; margin-top: 5px;">Copiar código
+                PIX</button>
+
+            <div id="qrcode"></div>
+            <button type="button" id="btnDownload"
+                style="display:none; margin-top:10px;">Baixar QR Code</button>
+
+        </div>
+
+        <script
+            src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+        <script src="./script.js"></script>
+    </body>
+</html>
